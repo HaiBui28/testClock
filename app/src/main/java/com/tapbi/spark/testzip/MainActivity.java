@@ -31,6 +31,7 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.tapbi.spark.testzip.databinding.ActivityMainBinding;
+import com.tapbi.spark.testzip.feature.weather.WeatherSmall;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -44,13 +45,16 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        binding.btnLoginDriver.setOnClickListener(v -> {
-            if (checkPermissionLocation(this)) {
-                setUpLocationUpdate();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
-            }
-        });
+//        binding.btnLoginDriver.setOnClickListener(v -> {
+//            if (checkPermissionLocation(this)) {
+//                setUpLocationUpdate();
+//            } else {
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+//            }
+//        });
+        WeatherSmall weatherSmall =new WeatherSmall(this);
+        weatherSmall.initData();
+        binding.frameLayout.addView(weatherSmall);
         binding.btnClock.setOnClickListener(v->{
             startActivity(new Intent(this,ClockActivity.class));
         });
