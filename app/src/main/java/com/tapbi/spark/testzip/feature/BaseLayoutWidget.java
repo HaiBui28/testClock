@@ -39,7 +39,7 @@ public abstract class BaseLayoutWidget<B extends ViewDataBinding> extends FrameL
     }
 
     public abstract void onCreateView(Context context);
-    public abstract void initData();
+    public abstract void initData(Context context);
 
     private void initView(Context context) {
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), getLayoutId(), this, true);

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         WeatherSmall weatherSmall =new WeatherSmall(this);
-        weatherSmall.initData();
+        weatherSmall.initData(this);
         binding.frameLayout.addView(weatherSmall);
         binding.btnClock.setOnClickListener(v->{
             startActivity(new Intent(this,ClockActivity.class));
@@ -140,5 +140,9 @@ public class MainActivity extends AppCompatActivity {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && context.checkSelfPermission(
                 Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED;
+    }
+    public int dpToPixels(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 }
